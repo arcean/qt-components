@@ -1,4 +1,4 @@
-qt-components (1.3~git20120215-1) maverick; urgency=low
+qt-components (1.3~git20120215-1+0m8) maverick; urgency=low
 
   * Fixes: NB#297391 Invisible model data content in the (Multi)SelectionDialog
   * Fixes: NB#286120 QueryDialog can be closed without pressing any buttons

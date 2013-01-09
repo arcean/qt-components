@@ -512,12 +512,12 @@ bool MDeclarativeScreen::eventFilter(QObject *o, QEvent *e) {
         d->topLevelWidget = qobject_cast<QWidget*>(o);
         if(d->topLevelWidget && d->topLevelWidget->parent() == NULL) { //it's a toplevelwidget
             d->setMinimized(d->topLevelWidget->windowState() & Qt::WindowMinimized);
-            if(d->isMinimized()) {
+            if(d->isMinimized() && !d->keyboardOpen) {
                 d->allowedOrientationsBackup = d->allowedOrientations;
 
                 //set allowedOrientations manually, because setAllowedOrientations() will not work while minimized
                 //minimized apps are forced to portrait or landscape based on maximized state
-                if (!d->allowedOrientationsBackup || (d->allowedOrientationsBackup & Portrait) || 
+                if (!d->allowedOrientationsBackup || (d->allowedOrientationsBackup & Portrait) ||
                    (d->allowedOrientationsBackup & PortraitInverted)) {
                     d->allowedOrientations = Portrait;
                     setOrientation(Portrait);
@@ -599,7 +599,7 @@ MDeclarativeScreen::Orientation MDeclarativeScreen::currentOrientation() const
 
 void MDeclarativeScreen::setAllowedOrientations(Orientations orientation) {
     if (d->allowedOrientations == orientation
-        || d->isMinimized()) //fixed portrait when minimized, no change possible!
+        || (d->isMinimized() && !d->keyboardOpen))
         return;
 
     d->allowedOrientations = orientation;
