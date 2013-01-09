@@ -128,7 +128,7 @@ MDeclarativeStatusBar::MDeclarativeStatusBar(QDeclarativeItem *parent) :
     mousePressed(false),
     feedbackDelay(false),
     swipeGesture(false),
-    mOrientation(MDeclarativeScreen::Portrait), 
+    mOrientation(MDeclarativeScreen::Portrait),
     feedbackPlayer(new FeedbackPlayer(this))
 {
     setFlag(QGraphicsItem::ItemHasNoContents, false);
@@ -330,7 +330,7 @@ void MDeclarativeStatusBar::handlePixmapProviderOffline()
 void MDeclarativeStatusBar::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     firstPos = event->pos();
-    
+
     if (feedbackPlayer)
         feedbackPlayer->sendPlaybackRequest(FeedbackPlayer::Press);
 

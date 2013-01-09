@@ -241,7 +241,7 @@ FocusScope {
                                         Qt.ImhFormattedNumbersOnly|
                                         Qt.ImhDialableCharactersOnly|
                                         Qt.ImhEmailCharactersOnly|
-                                        Qt.ImhUrlCharactersOnly 
+                                        Qt.ImhUrlCharactersOnly
 
     property bool __hadFocusBeforeMinimization: false
     property int __priorSelectionStart
@@ -259,7 +259,7 @@ FocusScope {
             }
 
             repositionTimer.running = true;
-        } else {                
+        } else {
             platformCloseSoftwareInputPanel();
             Popup.close(textInput);
             SelectionHandles.close(textInput);
@@ -543,7 +543,7 @@ FocusScope {
             onHorizontalDrag: {
                 // possible pre-edit word have to be commited before selection
                 if (root.activeFocus || root.readOnly) {
-                    inputContext.reset()                    
+                    inputContext.reset()
                     if( platformSelectable )
                         parent.selectByMouse = true
                     attemptToActivate = false
@@ -579,7 +579,7 @@ FocusScope {
                 if (attemptToActivate)
                     inputContext.reset();
 
-                var newCursorPosition = textInput.positionAt(mouse.x,TextInput.CursorOnCharacter); 
+                var newCursorPosition = textInput.positionAt(mouse.x,TextInput.CursorOnCharacter);
                 if (textInput.preedit.length == 0)
                     editBubblePosition = textInput.positionToRectangle(newCursorPosition);
 

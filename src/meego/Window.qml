@@ -65,7 +65,7 @@ Item {
         snapshot.take();
         snapshot.opacity = 1.0;
         snapshotRotation.angle = -window.rotation;
-        snapshot.smooth = false; 
+        snapshot.smooth = false;
         platformWindow.animating = true;
         root.orientationChangeAboutToStart();
     }
@@ -93,7 +93,7 @@ Item {
         id: window
         property bool portrait
 
-    	function rotationAngle( prevOrient, orient ) {
+        function rotationAngle( prevOrient, orient ) {
             if ( prevOrient == orient ) return 0;
             return ( (prevOrient == "Landscape" && orient == "LandscapeInverted" )
                                               || (prevOrient == "LandscapeInverted" && orient == "Landscape" )
@@ -139,9 +139,9 @@ Item {
                     if (root.inPortrait) {
                         windowContent.heightDelta = inputContext.softwareInputPanelRect.width
                     } else {
-                        if (inputContext.softwareInputPanelRect.height < window.height) 
-                            windowContent.heightDelta = inputContext.softwareInputPanelRect.height                      
-                        else 
+                        if (inputContext.softwareInputPanelRect.height < window.height)
+                            windowContent.heightDelta = inputContext.softwareInputPanelRect.height
+                        else
                             windowContent.heightDelta = 0
                     }
                 }

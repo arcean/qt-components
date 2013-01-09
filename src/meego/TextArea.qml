@@ -248,7 +248,7 @@ FocusScope {
             }
             Popup.close(textEdit);
             SelectionHandles.close(textEdit);
-            MagnifierPopup.close(); 
+            MagnifierPopup.close();
         }
         background.source = pickBackground();
     }

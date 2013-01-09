@@ -90,7 +90,7 @@ Item {
 
         onHeightChanged: if (rect.visible) Private.adjustPosition(bubble)
 
-        onVisibleChanged: {                                                         
+        onVisibleChanged: {
             if (visible == true) {
                 if (buttonPaste.visible == true &&
                     buttonCut.visible == false &&
@@ -100,8 +100,8 @@ Item {
                 Private.adjustPosition(bubble)
             } else if (autoHideoutTimer.running == true) {
                 autoHideoutTimer.running = false
-            }                                                                       
-        }            
+            }
+        }
 
         BasicRow {
             id: row
@@ -201,14 +201,14 @@ Item {
         }
     }
 
-    Timer {                                                                 
-        id: autoHideoutTimer                                                
-        interval: 5000                                                      
-        onTriggered: {                                                      
-            running = false                                                 
-            state = "hidden"                                                
-        }                                                                   
-    }       
+    Timer {
+        id: autoHideoutTimer
+        interval: 5000
+        onTriggered: {
+            running = false
+            state = "hidden"
+        }
+    }
 
     state: "closed"
 
