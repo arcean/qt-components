@@ -1,26 +1,21 @@
-qt-components (1.3~git20120215-2) maverick; urgency=low
+qt-components (1.3~git20120215-1) maverick; urgency=low
 
-  * Next release
+  * Fixes: NB#297391 Invisible model data content in the (Multi)SelectionDialog
+  * Fixes: NB#286120 QueryDialog can be closed without pressing any buttons
 
- -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 15 Feb 2012 08:59:00 +0300
+ -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 15 Feb 2012 08:57:00 +0300
 
-qt-components (1.3~git20120207-2) maverick; urgency=low
+qt-components (1.3~git20120207-1) maverick; urgency=low
 
-  * Next release
+  * Fixes: NB#293742 Text pasted in incorrect location in TextField and TextArea
 
- -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 08 Feb 2012 11:45:00 +0300
+ -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 07 Feb 2012 10:00:00 +0300
 
-qt-components (1.3~git20120130-2) maverick; urgency=low
+qt-components (1.3~git20120130-1) maverick; urgency=low
 
-  * Towards next release
+  * Initial 1.3 version
 
- -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 30 Jan 2012 12:31:00 +0300
-
-qt-components (1.2~git20120109-2) maverick; urgency=low
-
-  * Next release
-
- -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 09 Jan 2012 14:17:00 +0300
+ -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 30 Jan 2012 12:30:00 +0300
 
 qt-components (1.2~git20120109-1) maverick; urgency=low
 
@@ -33,7 +28,7 @@ qt-components (1.2~git20111209-1) maverick; urgency=low
   * Fixes: NB#293670 Add helper function for getting the font for the current language
   * Fixes: NB#293496 Long-pressing a TextField/TextArea leads app to hang out
 
- -- Balaji Chellakani <ext-balaji.chellakani@nokia.com>  Fri, 09 Dec 2011 16:50:00 +0300
+ -- Balaji Chellakani <ext-balaji.chellakani@nokia.com>  Fri, 09 Dec 2011 13:30:00 +0300
 
 qt-components (1.2~git20111202-1) maverick; urgency=low
 
@@ -42,7 +37,7 @@ qt-components (1.2~git20111202-1) maverick; urgency=low
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Fri, 02 Dec 2011 15:50:00 +0300
 
 qt-components (1.2~git20111128-1) maverick; urgency=low
-  
+
   * Fixes: NB#291767 TextArea component lacks a Flickable element
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 28 Nov 2011 16:05:00 +0300
@@ -50,56 +45,56 @@ qt-components (1.2~git20111128-1) maverick; urgency=low
 qt-components (1.2~git20111124-1) maverick; urgency=low
 
   * Fixes: NB#290197 Selection draggers are displayed out of range URL bar
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Thu, 24 Nov 2011 10:05:00 +0300
 
 qt-components (1.2~git20111122-2) maverick; urgency=low
 
   * Fixes: NB#292018 Bottom tool bar is missing for photos in facebook
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 22 Nov 2011 11:29:00 +0300
 
 qt-components (1.2~git20111122-1) maverick; urgency=low
 
   * Fixes: NB#290197 Selection draggers are displayed out of range URL bar
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 22 Nov 2011 10:05:00 +0300
 
 qt-components (1.2~git20111118-1) maverick; urgency=low
 
   * Fixes: NB#290197 Selection draggers are displayed out of range URL bar
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Fri, 18 Nov 2011 10:35:11 +0300
 
 qt-components (1.2~git20111109-1) maverick; urgency=low
 
   * Fixes: NB#288710 [TASK] Enforcing western numeric input in qt-components
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 09 Nov 2011 16:11:11 +0300
 
 qt-components (1.2~git20111102-1) maverick; urgency=low
 
   * Fixes: NB#288320 - several components are broken in 1.2~git20111020-1+0m7
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 02 Nov 2011 11:10:00 +0300
 
 qt-components (1.2~git20111025-2) maverick; urgency=low
 
   * Preparing for next release
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 25 Oct 2011 10:31:00 +0300
 
 qt-components (1.2~git20111025-1) maverick; urgency=low
 
   * Fixes: NB#260177 Dialog transitions are incorrect
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 25 Oct 2011 10:30:00 +0300
 
 qt-components (1.2~git20111020-1) maverick; urgency=low
 
   * Fixes: NB#284254 [TASK] Increase visibility time of the scroll indicator
   * Fixes: NB#285013 Pre-edit is not activated in QmlComponentGallery TextField and TextArea.
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Thu, 20 Oct 2011 09:45:00 +0300
 
 qt-components (1.2~git20111014-1) maverick; urgency=low
@@ -111,20 +106,20 @@ qt-components (1.2~git20111014-1) maverick; urgency=low
   * Fixes: NB#276483 Cursor does not move to the beginning of the TextField, when start of text is not visible
   * Fixes: NB#269305 Auto tests fail
   * Fixes: NB#277291 Ovi Music shows error in console about root.model not being an object
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Fri, 14 Oct 2011 13:25:00 +0300
 
 qt-components (1.2~git20111010-1) maverick; urgency=low
 
   * Fixes: NB#285532 Twitter: not able to open the twitter messages in a single click
   * Fixes: NB#285727 Search button is disabled in virtual keyboard when inputting some character then re-click the character in search box
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 10 Oct 2011 14:15:00 +0300
 
 qt-components (1.2~git20111003-1) maverick; urgency=low
 
   * Added selection and copy capability for Label element, includes handles
-  * Fixes: NB#280628 [TASK] Highlighting in Contact menu doesn't give the 
+  * Fixes: NB#280628 [TASK] Highlighting in Contact menu doesn't give the
   * Fixes: NB#260181 Orientation switch transition is incorrect
   * Fixes: NB#264153 Using magnifier on text area having lots of text breaks the magnifier and causes crash
   * Fixes: NB#264621 [TASK] Finish splash screen opening for full screen applications
@@ -148,44 +143,44 @@ qt-components (1.2~git20111003-1) maverick; urgency=low
   * Fixes: NB#282813 Paste bubble is not in sync with cursor when per-edit word is tapped for second time
   * Fixes: NB#283176 Cursor not moved when magnifier moved above or below TextArea
   * Fixes: NB#283390 platformWindow documentation missing
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 03 Oct 2011 15:25:00 +0300
 
 qt-components (1.2~git20110928-1) maverick; urgency=low
 
   * Fixes: NB#237126 (SLVD-952) Long strings are improperly truncated inside input fields (TextField class)
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 28 Sep 2011 13:18:00 +0300
 
 qt-components (1.1~git20110919-2) maverick; urgency=low
 
   * Fixes: NB#276446 [TASK] TumblerColumn doesn't support array of strings
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 19 Sep 2011 12:26:00 +0300
 
 qt-components (1.1~git20110919-1) maverick; urgency=low
 
   * Fixes NB#276446 [TASK] TumblerColumn doesn't support array of strings
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 19 Sep 2011 12:04:00 +0300
 
 qt-components (1.1~git20110915-2) maverick; urgency=low
 
   * Fixes: NB#265575 [TASK] QML API to disable/enable swipe
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Thu, 15 Sep 2011 14:55:00 +0300
 
 qt-components (1.1~git20110915-1) maverick; urgency=low
 
   * Fixes: 265575 [TASK] QML API to disable/enable swipe
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Thu, 15 Sep 2011 09:10:00 +0300
 
 qt-components (1.1~git20110908-1) maverick; urgency=low
 
-  * Fixes: NB#278107 Menu does not support theme.inverted 
+  * Fixes: NB#278107 Menu does not support theme.inverted
   * Fixes: NB#280314 EditBubble is first showed as disabled before EditBubble becomes visible
-  
+
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Thu, 08 Sep 2011 15:42:00 +0300
 
 qt-components (1.1~git20110905-1) maverick; urgency=low
@@ -197,7 +192,7 @@ qt-components (1.1~git20110905-1) maverick; urgency=low
 qt-components (1.1~git20110901-1) maverick; urgency=low
 
   * Fixes: NB#278372 Nokia Account page is broken
-  * Fixes: NB#278107 Menu does not support theme.inverted 
+  * Fixes: NB#278107 Menu does not support theme.inverted
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Fri, 02 Sep 2011 15:10:00 +0300
 
@@ -212,7 +207,7 @@ qt-components (1.1~git20110826-1) maverick; urgency=low
   * Fixes: NB#275360 Legal bug - license header change in qt-components
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Fri, 26 Aug 2011 14:15:00 +0300
- 
+
 qt-components (1.1~git20110824-2) maverick; urgency=low
 
   * Fixes: NB#278574 "import com.meego.extras 1.0" fails in PR1.1
@@ -282,7 +277,7 @@ qt-components (1.1~git20110802-1) maverick; urgency=low
 
 qt-components (1.0~git20110712-1) maverick; urgency=low
 
-  * Fixes: NB#270426 - coreweb: /usr/bin/FacebookQML "Fails at Daemon::readFromBoosterSocket" 
+  * Fixes: NB#270426 - coreweb: /usr/bin/FacebookQML "Fails at Daemon::readFromBoosterSocket"
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 12 July 2011 13:55:00 +0300
 
@@ -294,7 +289,7 @@ qt-components (1.0~git20110630-1) maverick; urgency=low
 
 qt-components (1.0~git20110628-1) maverick; urgency=low
 
-  * Fixes: NB#268223 Paste function fails work if the text box has been pasted once after copying text from Notes app 
+  * Fixes: NB#268223 Paste function fails work if the text box has been pasted once after copying text from Notes app
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 28 June 2011 13:40:00 +0300
 
@@ -320,7 +315,7 @@ qt-components (1.0~git20110620-2) maverick; urgency=low
 qt-components (1.0~git20110620-1) maverick; urgency=low
 
   * Fixes: NB#265642 - TextField not repositioned when entering input after panning the screen
-  * Fixes: NB#264962 - Wrong textfield is shown when repositioning screen 
+  * Fixes: NB#264962 - Wrong textfield is shown when repositioning screen
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Mon, 20 June 2011 13:54:00 +0300
 
@@ -332,7 +327,7 @@ qt-components (1.0~git20110616-1) maverick; urgency=low
 
 qt-components (1.0~git20110615-1) maverick; urgency=low
 
-  * Fixes: NB#265115 Facebook status bar dissappears on new status update 
+  * Fixes: NB#265115 Facebook status bar dissappears on new status update
   * Fixes: NB#265658 MRemoteThemeDaemonClient creates unnecessary pixmaps
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 15 June 2011 12:04:00 +0300
@@ -340,7 +335,7 @@ qt-components (1.0~git20110615-1) maverick; urgency=low
 qt-components (1.0~git20110614-1) maverick; urgency=low
 
   * Fixes: NB#264944 typing in pre-edit doesn't reposition the textfield
-  * Fixes: NB#264577 Word tracker is wrongly placed after screen orientation change 
+  * Fixes: NB#264577 Word tracker is wrongly placed after screen orientation change
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Tue, 14 June 2011 14:42:00 +0300
 
@@ -361,7 +356,7 @@ qt-components (1.0~git20110610-1) maverick; urgency=low
 qt-components (1.0~git20110608-1) maverick; urgency=low
 
   * Fixes: NB#262006 Severe splash screen transition flickering problem in new QML calculator
-  * Fixes: NB#260684 Inverted SheetStyle not respected for Sheet 
+  * Fixes: NB#260684 Inverted SheetStyle not respected for Sheet
 
  -- Joonas Reynders <ext-joonas.n.reynders@nokia.com>  Wed, 08 June 2011 11:40:00 +0300
 
