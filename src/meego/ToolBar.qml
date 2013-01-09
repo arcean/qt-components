@@ -114,7 +114,7 @@ Item {
         },
         State {
             name: ""
-            when: !(privateVisibility == ToolBarVisibility.Visible || tools == null)
+            when: (privateVisibility == ToolBarVisibility.Visible && tools != null)
             PropertyChanges { target: root; height: bgImage.height; visible: true; }
         }
     ]
