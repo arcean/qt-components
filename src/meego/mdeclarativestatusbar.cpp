@@ -56,7 +56,7 @@
 #include "feedbackplayer.h"
 
 #ifdef HAVE_DBUS
-   #include <QDBusInterface>
+   #include <QDBusMessage>
    #include <QDBusServiceWatcher>
    #include <QDBusConnectionInterface>
 #endif
@@ -144,13 +144,6 @@ MDeclarativeStatusBar::MDeclarativeStatusBar(QDeclarativeItem *parent) :
 #endif
         filterRegistered = true;
     }
-
-#ifdef HAVE_DBUS
-    if (QDBusConnection::sessionBus().interface()->isServiceRegistered(PIXMAP_PROVIDER_DBUS_SERVICE))
-        isPixmapProviderOnline = true;
-    else
-#endif
-        isPixmapProviderOnline = false;
 
 #ifdef HAVE_DBUS
     dbusWatcher = new QDBusServiceWatcher( PIXMAP_PROVIDER_DBUS_SERVICE , QDBusConnection::sessionBus(),
@@ -242,12 +235,9 @@ void MDeclarativeStatusBar::updateXdamageEventSubscription()
 void MDeclarativeStatusBar::updateSharedPixmap()
 {
     destroyXDamageForSharedPixmap();
-    if ((!updatesEnabled)||(!isPixmapProviderOnline))
-        return;
 
-    if (!sharedPixmap.isNull()) {
+    if (updatesEnabled && !sharedPixmap.isNull())
         setupXDamageForSharedPixmap();
-    }
 }
 
 void MDeclarativeStatusBar::setupXDamageForSharedPixmap()
@@ -284,14 +274,15 @@ void MDeclarativeStatusBar::disablePixmapUpdates()
 
 void MDeclarativeStatusBar::querySharedPixmapFromProvider()
 {
-    if (!updatesEnabled || !isPixmapProviderOnline)
+    if (!updatesEnabled)
         return;
-#ifdef HAVE_DBUS
-    QDBusInterface interface(PIXMAP_PROVIDER_DBUS_SERVICE, PIXMAP_PROVIDER_DBUS_PATH, PIXMAP_PROVIDER_DBUS_INTERFACE,
-                             QDBusConnection::sessionBus());
-    QDBusPendingCall asyncCall =  interface.asyncCall(PIXMAP_PROVIDER_DBUS_SHAREDPIXMAP_CALL);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(asyncCall, this);
 
+#ifdef HAVE_DBUS
+    QDBusMessage message = QDBusMessage::createMethodCall(PIXMAP_PROVIDER_DBUS_SERVICE, PIXMAP_PROVIDER_DBUS_PATH,
+                            PIXMAP_PROVIDER_DBUS_INTERFACE, PIXMAP_PROVIDER_DBUS_SHAREDPIXMAP_CALL);
+    QDBusPendingCall asyncCall = QDBusConnection::sessionBus().asyncCall(message);
+
+    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(asyncCall, this);
     connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)),
             this, SLOT(sharedPixmapHandleReceived(QDBusPendingCallWatcher*)));
 #endif
@@ -328,13 +319,11 @@ void MDeclarativeStatusBar::sharedPixmapHandleReceived(QDBusPendingCallWatcher *
 
 void MDeclarativeStatusBar::handlePixmapProviderOnline()
 {
-    isPixmapProviderOnline = true;
     querySharedPixmapFromProvider();
 }
 
 void MDeclarativeStatusBar::handlePixmapProviderOffline()
 {
-    isPixmapProviderOnline = false;
     destroyXDamageForSharedPixmap();
 }
 
@@ -390,8 +379,9 @@ void MDeclarativeStatusBar::disablePressedFeedback()
 void MDeclarativeStatusBar::showStatusIndicatorMenu()
 {
 #ifdef HAVE_DBUS
-    QDBusInterface interface(STATUS_INDICATOR_MENU_DBUS_SERVICE, STATUS_INDICATOR_MENU_DBUS_PATH, STATUS_INDICATOR_MENU_DBUS_INTERFACE, QDBusConnection::sessionBus());
-    interface.call(QDBus::NoBlock, "open");
+    QDBusMessage message = QDBusMessage::createMethodCall(STATUS_INDICATOR_MENU_DBUS_SERVICE, STATUS_INDICATOR_MENU_DBUS_PATH,
+                                                          STATUS_INDICATOR_MENU_DBUS_INTERFACE, "open");
+    QDBusConnection::sessionBus().asyncCall(message);
 #endif
 }
 
