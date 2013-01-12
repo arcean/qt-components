@@ -206,6 +206,7 @@ private:
 
     void setOrientation(Orientation o);
     Orientation physicalOrientation() const;
+    bool isHomePortrait();
 
     friend class MDeclarativeScreenPrivate;
     MDeclarativeScreenPrivate *d;

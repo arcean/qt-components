@@ -262,15 +262,27 @@ Item {
                 }
                 ScriptAction { script: __endTransformation() }
             }
-        }
+        },
+            Transition {
+                // use this transition when sip is not visible
+                from: (screen.minimized ? "*" : "disabled")
+                to:   (screen.minimized ? "*" : "disabled")
+                SequentialAnimation {
+                    alwaysRunToEnd: true
+                    PropertyAction { target: window; properties: "portrait"; }
+                    PropertyAction { target: window; properties: "width"; }
+                    PropertyAction { target: window; properties: "height"; }
+                    ScriptAction { script: __endTransformation() }
+                }
+            }
         ]
 
         focus: true
         Keys.onReleased: {
-            if (event.key == Qt.Key_I && event.modifiers == Qt.AltModifier) {
+            if (event.key == Qt.Key_I && event.modifiers == Qt.ControlModifier) {
                 theme.inverted = !theme.inverted;
             }
-            if (event.key == Qt.Key_E && event.modifiers == Qt.AltModifier) {
+            if (event.key == Qt.Key_Y && event.modifiers == Qt.ControlModifier) {
                 if(screen.currentOrientation == Screen.Landscape) {
                     screen.allowedOrientations = Screen.Portrait;
                 } else if(screen.currentOrientation == Screen.Portrait) {

@@ -98,7 +98,7 @@ public:
     MDeclarativeScreen::Orientation orientation;
     MDeclarativeScreen::Orientation finalOrientation;
     MDeclarativeScreen::Orientations allowedOrientations;
-    MDeclarativeScreen::Orientations allowedOrientationsBackup;
+    //MDeclarativeScreen::Orientations allowedOrientationsBackup;
     MDeclarativeScreen::Direction rotationDirection;
 
     bool isCovered;
@@ -513,26 +513,21 @@ bool MDeclarativeScreen::eventFilter(QObject *o, QEvent *e) {
         if(d->topLevelWidget && d->topLevelWidget->parent() == NULL) { //it's a toplevelwidget
             d->setMinimized(d->topLevelWidget->windowState() & Qt::WindowMinimized);
             if(d->isMinimized() && !d->keyboardOpen) {
-                d->allowedOrientationsBackup = d->allowedOrientations;
-
-                //set allowedOrientations manually, because setAllowedOrientations() will not work while minimized
-                //minimized apps are forced to portrait or landscape based on maximized state
-                if (!d->allowedOrientationsBackup || (d->allowedOrientationsBackup & Portrait) ||
-                   (d->allowedOrientationsBackup & PortraitInverted)) {
-                    d->allowedOrientations = Portrait;
-                    setOrientation(Portrait);
-                } else {
-                    d->allowedOrientations = Landscape;
-                    setOrientation(Landscape);
+                if(!isHomePortrait()) {
+                    if ((allowedOrientations() & Landscape) || (allowedOrientations() & LandscapeInverted))
+                        setOrientation(Landscape);
+                    else
+                        setOrientation(Portrait);
+                }
+                else {
+                    if ((allowedOrientations() & Portrait) || (allowedOrientations() & PortraitInverted))
+                        setOrientation(Portrait);
+                    else
+                        setOrientation(Landscape);
                 }
             } else {
-                if(d->allowedOrientationsBackup != Default) {
-                    setAllowedOrientations(d->allowedOrientationsBackup);
-                    //if the current sensor's value is allowed, switch to it
-
-                    if(d->physicalOrientation() & allowedOrientations())
-                        setOrientation(d->physicalOrientation());
-                }
+                if(d->physicalOrientation() & allowedOrientations())
+                    setOrientation(d->physicalOrientation());
             }
         } else {
             qCritical() << "State change event from foreign window";
@@ -598,8 +593,7 @@ MDeclarativeScreen::Orientation MDeclarativeScreen::currentOrientation() const
 }
 
 void MDeclarativeScreen::setAllowedOrientations(Orientations orientation) {
-    if (d->allowedOrientations == orientation
-        || (d->isMinimized() && !d->keyboardOpen))
+    if (d->allowedOrientations == orientation)
         return;
 
     d->allowedOrientations = orientation;
@@ -824,6 +818,81 @@ bool MDeclarativeScreen::isPortrait() const
 
 bool MDeclarativeScreen::isDisplayLandscape() const {
     return platformPhysicalDisplayOrientation() & Landscape;
+}
+
+bool MDeclarativeScreen::isHomePortrait()
+{
+#ifdef Q_WS_X11
+    Atom actualType = 0;
+    int actualFormat = 0;
+    unsigned long nitems = 0;
+    unsigned long bytes = 0;
+    bool result = true;
+    unsigned int angle = 270;
+    unsigned char *windowData = NULL;
+    QList<Window> stackingWindowList;
+
+    union {
+            unsigned char* asUChar;
+            unsigned int* asInt;
+    } data = {0};
+
+    Display *dpy = QX11Info::display();
+
+    if (!dpy)
+        return true;
+
+    // Get the windows' stack from the WM
+    Atom propertyAtom = XInternAtom(dpy, "_NET_CLIENT_LIST_STACKING", False);
+
+    Status status = XGetWindowProperty(dpy, DefaultRootWindow(dpy), propertyAtom,
+                                                   0, 0x7fffffff, False, XA_WINDOW,
+                                                   &actualType, &actualFormat, &nitems, &bytes, &windowData);
+
+    if (status == Success && windowData != None) {
+        Window *windows = (Window *)windowData;
+        for (unsigned int i = 0; i < nitems; i++) {
+            stackingWindowList.append(windows[i]);
+        }
+        XFree(windowData);
+    }
+
+    if (stackingWindowList.size() < 1)
+        return true;
+
+    // Desktop is the last element in the stack.
+    Window w = stackingWindowList.last();
+
+    if (w == 0)
+        return true;
+
+    // Reset variables
+    actualType = 0;
+    actualFormat = 0;
+    nitems = 0;
+    bytes = 0;
+
+    // Get the orientation angle of the desktop
+    propertyAtom = XInternAtom(dpy, "_MEEGOTOUCH_ORIENTATION_ANGLE", False);
+
+    status = XGetWindowProperty(dpy, w, propertyAtom,
+                                    0, 1, False, AnyPropertyType,
+                                    &actualType, &actualFormat, &nitems,
+                                    &bytes, &data.asUChar);
+
+    if (status == Success && actualType == XA_CARDINAL && actualFormat == 32 && nitems == 1) {
+        if (data.asInt[0] == 0 || data.asInt[0] == 90 || data.asInt[0] == 180
+                || data.asInt[0] == 270 ){
+            angle = data.asInt[0];
+        }
+
+        if (angle != 270)
+            result = false;
+    }
+    return result;
+#else
+    return true;
+#endif
 }
 
 void MDeclarativeScreen::setAllowSwipe(bool enabled)
