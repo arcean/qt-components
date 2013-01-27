@@ -105,34 +105,30 @@ Item {
         State {
             name: "hidden"
             when: privateVisibility == ToolBarVisibility.Hidden || tools == null
-            PropertyChanges { target: root; height: 0; visible: false; }
+            PropertyChanges { target: root; height: 0; }
         },
         State {
             name: "HiddenImmediately"
             when: privateVisibility == ToolBarVisibility.HiddenImmediately
-            PropertyChanges { target: root; height: 0; visible: false; }
+            PropertyChanges { target: root; height: 0; }
         },
         State {
-            name: "visible"
-            when: (privateVisibility == ToolBarVisibility.Visible && tools != null)
-            PropertyChanges { target: root; height: bgImage.height; visible: true; }
+            name: ""
+            when: !(privateVisibility == ToolBarVisibility.Visible || tools == null)
+            PropertyChanges { target: root; height: bgImage.height }
         }
+
     ]
 
-    // Transition between active and inactive states.
-    transitions: Transition {
-        from: "visible"; to: "hidden"; reversible: true;
-        SequentialAnimation {
-            PropertyAnimation {
-                properties: "height";
-                easing.type: Easing.InOutExpo;
-                duration: platformStyle.visibilityTransitionDuration;
-            }
-            PropertyAction {
-                properties: "visible";
+    transitions: [
+        // Transition between active and inactive states.
+        Transition {
+            from: ""; to: "hidden"; reversible: true
+            ParallelAnimation {
+                PropertyAnimation { properties: "height"; easing.type: Easing.InOutExpo; duration: platformStyle.visibilityTransitionDuration }
             }
         }
-    }
+    ]
 
     // The current set of tools.
     property Item tools: null
@@ -182,7 +178,7 @@ Item {
 
         // select container states based on the transition animation
         var transitions = {
-            "set":      { "new": "default",        "old": "hidden" },
+            "set":      { "new": "",        "old": "hidden" },
             "push":     { "new": "right",   "old": "left" },
             "pop":      { "new": "left",    "old": "right" },
             "replace":  { "new": "front",   "old": "back" }
@@ -203,7 +199,7 @@ Item {
         __currentContainer.state = animation["old"];
         if (tools) {
             container.state = animation["new"];
-            container.state = "default";
+            container.state = "";
         }
 
         __currentContainer = container;
@@ -240,31 +236,22 @@ Item {
                 // Start state for pop entry, end state for push exit.
                 State {
                     name: "left"
-                    PropertyChanges { target: container; visible: true }
                     PropertyChanges { target: container; x: -30; opacity: 0.0 }
                 },
                 // Start state for push entry, end state for pop exit.
                 State {
                     name: "right"
-                    PropertyChanges { target: container; visible: true }
                     PropertyChanges { target: container; x: 30; opacity: 0.0 }
                 },
                 // Start state for replace entry.
                 State {
                     name: "front"
-                    PropertyChanges { target: container; visible: true }
                     PropertyChanges { target: container; scale: 1.25; opacity: 0.0 }
                 },
                 // End state for replace exit.
                 State {
                     name: "back"
-                    PropertyChanges { target: container; visible: true }
                     PropertyChanges { target: container; scale: 0.85; opacity: 0.0 }
-                },
-                State {
-                    name: "default"
-                    PropertyChanges { target: container; visible: true }
-                    PropertyChanges { target: container; scale: 1.0; opacity: 1.0; x: 0.0 }
                 },
                 // Inactive state.
                 State {
@@ -277,7 +264,7 @@ Item {
             transitions: [
                 // Pop entry and push exit transition.
                 Transition {
-                    from: "default"; to: "left"; reversible: true
+                    from: ""; to: "left"; reversible: true
                     SequentialAnimation {
                         PropertyAnimation { properties: "x,opacity"; easing.type: Easing.InCubic; duration: platformStyle.contentTransitionDuration / 2 }
                         PauseAnimation { duration: platformStyle.contentTransitionDuration / 2 }
@@ -286,7 +273,7 @@ Item {
                 },
                 // Push entry and pop exit transition.
                 Transition {
-                    from: "default"; to: "right"; reversible: true
+                    from: ""; to: "right"; reversible: true
                     SequentialAnimation {
                         PropertyAnimation { properties: "x,opacity"; easing.type: Easing.InCubic; duration: platformStyle.contentTransitionDuration / 2 }
                         PauseAnimation { duration: platformStyle.contentTransitionDuration / 2 }
@@ -295,14 +282,14 @@ Item {
                 },
                 Transition {
                     // Replace entry transition.
-                    from: "front"; to: "default";
+                    from: "front"; to: "";
                     SequentialAnimation {
                         PropertyAnimation { properties: "scale,opacity"; easing.type: Easing.InOutExpo; duration: platformStyle.contentTransitionDuration }
                     }
                 },
                 Transition {
                     // Replace exit transition.
-                    from: "default"; to: "back";
+                    from: ""; to: "back";
                     SequentialAnimation {
                         PropertyAnimation { properties: "scale,opacity"; easing.type: Easing.InOutExpo; duration: platformStyle.contentTransitionDuration }
                         ScriptAction { script: if (state == "back") state = "hidden" }
@@ -314,3 +301,4 @@ Item {
     }
 
 }
+
