@@ -89,7 +89,7 @@ Item {
             visible: listItem.iconSource ? true : false
             width: UI.LIST_ICON_SIZE
             height: UI.LIST_ICON_SIZE
-            source: listItem.iconSource ? listItem.iconSource : ""
+            source: listItem.iconSource
         }
 
         Column {
@@ -106,7 +106,7 @@ Item {
 
             Label {
                 id: subText
-                text: listItem.subtitleText ? listItem.subtitleText : ""
+                text: listItem.subtitleText
                 font.family: listItem.subtitleFont
                 font.weight: listItem.subtitleWeight
                 font.pixelSize: listItem.subtitleSize
