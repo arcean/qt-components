@@ -39,17 +39,13 @@
 ****************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.2
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 
 Page {
     id: listPage
-
-    PageHeader {
-        id: pageHeader
-        text: "QML Component Gallery"
-        color: "#44bb44"
-    }
+    anchors.leftMargin: UiConstants.DefaultMargin
+    anchors.rightMargin: UiConstants.DefaultMargin
 
     tools:
         ToolBarLayout {
@@ -165,12 +161,8 @@ Page {
 
     ListView {
         id: listview
-        anchors.top: pageHeader.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors.fill: parent
         model: pagesModel
-        clip: true
 
         delegate: ListDelegate {
             x: UiConstants.DefaultMargin
