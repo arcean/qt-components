@@ -39,13 +39,17 @@
 ****************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.1
+import com.nokia.meego 1.2
 import com.nokia.extras 1.1
 
 Page {
     id: listPage
-    anchors.leftMargin: UiConstants.DefaultMargin
-    anchors.rightMargin: UiConstants.DefaultMargin
+
+    PageHeader {
+        id: pageHeader
+        text: "QML Component Gallery"
+        color: "#44bb44"
+    }
 
     tools:
         ToolBarLayout {
@@ -160,21 +164,27 @@ Page {
     }
 
     ListView {
-        id: listView
-        anchors.fill: parent
+        id: listview
+        anchors.top: pageHeader.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
         model: pagesModel
+        clip: true
 
-        delegate:  ListDelegate {
+        delegate: ListDelegate {
+            x: UiConstants.DefaultMargin
             Image {
                 source: "image://theme/icon-m-common-drilldown-arrow" + (theme.inverted ? "-inverse" : "")
                 anchors.right: parent.right;
+                anchors.rightMargin: UiConstants.DefaultMargin * 2
                 anchors.verticalCenter: parent.verticalCenter
             }
 
-            onClicked: { listPage.openFile(page) }
+            onClicked: { openFile(model.page); }
         }
     }
     ScrollDecorator {
-        flickableItem: listView
+        flickableItem: listview
     }
 }
