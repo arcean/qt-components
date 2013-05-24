@@ -112,12 +112,14 @@ Item {
                       Popup.enableOffset( Private.handlesIntersectWith(Popup.geometry()) );
                       MagnifierPopup.close();
                   }
+                  /*
                   onExited: {
                       Popup.enableOffset( false );
                       Popup.open(textInput,textInput.positionToRectangle(textInput.cursorPosition));
                       Popup.enableOffset( Private.handlesIntersectWith(Popup.geometry()) );
                       MagnifierPopup.close();
                   }
+                  */
               }
 
               states: [
@@ -219,12 +221,13 @@ Item {
                       Popup.enableOffset( Private.handlesIntersectWith(Popup.geometry()) );
                       MagnifierPopup.close();
                  }
+                 /*
                  onExited: {
                      Popup.enableOffset( false );
                      Popup.open(textInput,textInput.positionToRectangle(textInput.cursorPosition));
                      Popup.enableOffset( Private.handlesIntersectWith(Popup.geometry()) );
                      MagnifierPopup.close();
-                 }
+                 }*/
              }
 
               states: [
